@@ -15,7 +15,7 @@ class Player(GameObject):
         if self.y >= (max_height - self.height) and direction_y > 0:
             """if player bottom is at the bottom and trying to go down, stop"""
             y = False
-        if self.y <= 90 and direction_y < 0:
+        if self.y <= (self.height * 2) and direction_y < 0:
             """if player top is at the top and trying to go up, stop"""
             y = False
         if self.x >= ((max_width / 2) + (max_width / 3) - self.width) and direction_x > 0:
