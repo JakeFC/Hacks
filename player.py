@@ -12,7 +12,7 @@ class Player(GameObject):
         if self.y >= (max_height - self.height) and direction_y > 0:
             """if player bottom is at the bottom and trying to go down, stop"""
             y = False
-        if self.y <= 0 and direction_y < 0:
+        if self.y <= 90 and direction_y < 0:
             """if player top is at the top and trying to go up, stop"""
             y = False
         if self.x >= ((max_width / 2) + (max_width / 3) - self.width) and direction_x > 0:
@@ -27,21 +27,3 @@ class Player(GameObject):
         if x:
             """x position value gets lower for left and higher for down * speed"""
             self.x += (direction_x * self.speed)
-# from gameObject import GameObject
-
-# class Player(GameObject):
-
-
-#     def __init__(self, x, y, width, height, image_path, speed):
-#         super().__init__(x, y, width, height, image_path)
-
-#         self.speed = speed
-
-    
-#     def move(self, direction, max_height):
-#         if (self.y >= max_height - self.height and direction > 0) or (self.y == 0 and direction < 0):
-#             return 
-
-#         self.y += (direction * self.speed)
-
-
