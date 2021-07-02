@@ -60,8 +60,9 @@ class Game:
         """sets the padoru image at 471, 22(x, y) and scales the dimensions to self.entity_width * self.entity_height px"""
         self.padoru = GameObject((self.width / 2) - self.entity_width, self.height / 32.73, self.entity_width * 2, self.entity_height * 2, 'assets/padoru.png')
 
-        """starting level to change difficulty off of"""
+        """starting level and difficulty"""
         self.level = 1
+        self.difficulty = 0.8
 
         """creates the player and enemies at the start"""
         self.reset_map()
@@ -115,7 +116,7 @@ class Game:
     def reset_map(self):
         """on level change, redraws players and enemies at new position with speed change"""
 
-        speed = (self.height / 205) * (self.level * .8)
+        speed = (self.height / 205) * (self.level * self.difficulty)
         """sets the player image at bottom middle and scales to around 50x50 px with small variable speed increase"""
         self.player = Player((self.width / 2) - (self.entity_width / 2), (self.height / 1.09), self.entity_width, self.entity_height, 'assets/player.png', (self.height / 180) + (speed / (self.height / 100)))
 
@@ -236,6 +237,12 @@ class Game:
                         """positive direction raises x position(goes right)"""
                         player_direction_x += 1
                         self.player.change_image('assets/right.png')
+                    if event.key == pygame.K_EQUALS:
+                        """'=' or '+' key increases speed scaling on reset"""
+                        self.difficulty += 0.1
+                    if event.key == pygame.K_MINUS and self.difficulty > 0.1:
+                        """'-' key decreases speed scaling on reset down to 0.1"""
+                        self.difficulty -= 0.1
 
                 elif event.type == pygame.KEYUP:
                     """if a key is lifted up"""
