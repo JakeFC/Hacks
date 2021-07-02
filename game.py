@@ -76,12 +76,16 @@ class Game:
     def play_padoru(self):
         """plays padoru"""
         pygame.mixer.music.unload()
-        pygame.mixer.music.load('assets/padoru.wav')
+        pygame.mixer.music.load('assets/padoru_song.wav')
         pygame.mixer.music.set_volume(0.3)
         pygame.mixer.music.play(loops=-1, start=0.0)
 
     def death_screen(self):
-        """draws the death screen"""
+        """draws the death screen and plays scream"""
+        pygame.mixer.music.unload()
+        pygame.mixer.music.load('assets/willhelm.wav')
+        pygame.mixer.music.set_volume(0.5)
+        pygame.mixer.music.play(loops=0, start=0.0)
         """sets background color"""
         self.game_window.fill(self.white_color)
 
@@ -189,10 +193,6 @@ class Game:
     def check_if_collided(self):
         for enemy in self.enemies:
             if self.detect_collision(self.player, enemy):
-                pygame.mixer.music.unload()
-                pygame.mixer.music.load('assets/willhelm.wav')
-                pygame.mixer.music.set_volume(0.5)
-                pygame.mixer.music.play(loops=0, start=0.0)
                 self.death_screen()
                 time.sleep(2)
                 self.play_padoru()
